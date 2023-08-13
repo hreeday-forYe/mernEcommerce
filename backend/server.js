@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from 'dotenv';
 import products from "./data/products.js"; // we need to use .js for our own modules
-
+import connectDB from "./config/db.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
+
+
+connectDB(); // we are trying to make connection with database
 
 const app = express();
 
