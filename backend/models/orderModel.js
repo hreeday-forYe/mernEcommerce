@@ -37,7 +37,7 @@ const orderSchema = new mongoose.Schema({
     email_address: {type:String},
   },
   itemsPrice: {
-    type:number,
+    type:Number,
     required:true,
     default: 0.0,
   },
@@ -79,4 +79,4 @@ const orderSchema = new mongoose.Schema({
 
 const Order = mongoose.model("Order", orderSchema);
 
-export default orderSchema;
+export default Order;
