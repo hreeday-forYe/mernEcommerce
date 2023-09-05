@@ -10,10 +10,17 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+
+// importing the store and the provider from the react redux
+import { Provider } from 'react-redux';
+import store from './store';
+
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+
 
 // Here we are going to create our routes using the browserRouter and createRoutesFromElements
 const router = createBrowserRouter(
@@ -28,7 +35,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
+    </Provider>
   </React.StrictMode>
 );
 
