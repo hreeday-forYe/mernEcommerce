@@ -9,7 +9,7 @@ import User from "./models/userModel.js";
 import chalk from 'chalk';
 
 dotenv.config();
-await connectDB();
+connectDB();
 
 const importData = async () =>{
   try {
