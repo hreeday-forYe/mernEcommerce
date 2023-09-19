@@ -20,6 +20,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
 
 
 // Here we are going to create our routes using the browserRouter and createRoutesFromElements
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route index={true} path='/' element={<HomeScreen/>}></Route>
       <Route  path='/product/:id' element={<ProductScreen/>}></Route>
+      <Route  path='/cart' element={<CartScreen/>}></Route>
     </Route>
   )
 )
