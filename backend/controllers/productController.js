@@ -1,9 +1,13 @@
 import asyncHandler from "../middleware/asyncHandler.js"
 import Product from "../models/productModel.js"
 
-// @desc Fetch all Products
-// @route GET /api/products
-// @access Public
+/* ---------------------------------------------------------------
+PRODUCTS ROUTES- PUBLIC Routes WHERE ALL THE USERS CAN SEE PRODUCTS AND SINGLE PRODUCT
+-------------------------------------------------------------- */
+
+// @desc - Fetch all Products
+// @route - GET /api/products
+// @access - Public
 const getProducts = asyncHandler(async(req, res)=>{
   const products = await Product.find({}); 
   res.json(products);
