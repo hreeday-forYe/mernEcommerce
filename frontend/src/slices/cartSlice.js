@@ -4,7 +4,7 @@ import { updateCart } from "../utils/cartUtils";
 // @Meaning first we check the cart in the local Storage if cart is available on local Storage then we get 
 /* it using the localStorage.getItem("cart") and parse it using the JSON.parse to the object else localstorage doesnot have the item cart then leave it to be the empty object with the cartItems keys having the value of empty array. */
 
-const initialState = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem("cart")) : {cartItems: []};
+const initialState = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem("cart")) : {cartItems: [], shippingAddress: {}, payment: 'Paypal'};
 
 
 const cartSlice = createSlice({
@@ -30,12 +30,16 @@ const cartSlice = createSlice({
     removeFromCart: (state,action)=>{
       state.cartItems = state.cartItems.filter((x)=>x._id !== action.payload);
       return updateCart(state); // updaging the cart after the items is removed
+    },
+    saveShippingAddress: (state, action)=>{
+      state.shippingAddress = action.payload;
+      return updateCart(state)
     }
   },
 });
 
 // inorder to use this export we have to pass the reducer function as action
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress } = cartSlice.actions;
 
 // exporting all of our reducers for keeping it in the store js
 export default cartSlice.reducer;
