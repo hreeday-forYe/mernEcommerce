@@ -12,13 +12,21 @@ import {
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
+
+
 const CartScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // getting the cart items from the state
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart)
   const { cartItems } = cart;
+
+  // getting the userInfo from the state 
+  const user = useSelector((state)=>state.auth)
+  console.log(user)
+  const { userInfo } = user
+
   const addToCartHandler = async (product, qty)=>{
     dispatch(addToCart({...product, qty}))
   }
@@ -28,7 +36,7 @@ const CartScreen = () => {
 
   // CheckOut Handler
   const checkOutHandler = ()=>{
-    navigate('/login?redirect=/shipping')
+    userInfo? navigate('/shipping') : navigate('/login?redirect=/shipping')
   }
   return (
     <Row>
@@ -36,7 +44,7 @@ const CartScreen = () => {
         <h1 style={{ marginBottom: "20px" }}>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your Cart is empty <Link to="/">Go back</Link>
+            Your Cart is empty <Link to='/'>Go back</Link>
           </Message>
         ) : (
           <ListGroup variant="flush">
@@ -78,10 +86,10 @@ const CartScreen = () => {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h3>
+              <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                 )Items
-              </h3>
+              </h2>
               ${cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}

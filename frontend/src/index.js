@@ -24,6 +24,8 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
+import PrivateRoute from './components/PrivateRoute';
+import PaymentScreen from './screens/PaymentScreen';
 // Here we are going to create our routes using the browserRouter and createRoutesFromElements
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +35,14 @@ const router = createBrowserRouter(
       <Route  path='/cart' element={<CartScreen/>}></Route>
       <Route  path='/login' element={<LoginScreen/>}></Route>
       <Route  path='/register' element={<RegisterScreen/>}></Route>
-      <Route  path='/shipping' element={<ShippingScreen/>}></Route>
+
+      {/* If we want to setup some private routes set up another routes as created the PrivateRoute  
+        Navigates the user to whatever he is trying to go using the outlet else to login screen as we know ShippingScreen is the page we don't want the user to view unless he is logged in 
+      */}
+      <Route path='' element={<PrivateRoute/>}>
+        <Route  path='/shipping' element={<ShippingScreen/>}></Route>
+        <Route  path='/payment' element={<PaymentScreen/>}></Route>
+      </Route>
     </Route>
   )
 )
