@@ -4,7 +4,8 @@ import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js"
 import userRoutes from './routes/userRoutes.js'
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser"
+import orderRoutes from './routes/orderRoutes.js'
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -29,8 +30,12 @@ app.get("/",(req, res)=>{
 // Our router for the products requests will be handled by productRoutes file
 app.use("/api/products",productRoutes);
 
-// Our router for the Users requests will be handled by productRoutes file
+// Our router for the Users requests will be handled by userRoutes file
 app.use("/api/users",userRoutes);
+
+
+// Our router for the Order requests will be handled by orderRoutes file
+app.use("/api/orders",orderRoutes);
 
 
 // using our error handler after all the routes
