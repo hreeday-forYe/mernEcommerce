@@ -16,8 +16,8 @@ router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders)
 // Getting the myorder
 router.route('/mine').get(protect, getMyOrders)
 
-// Getting the single Order
-router.route('/:id').get(protect, admin, getOrderById)
+// Getting the single Order as the user
+router.route('/:id').get(protect, getOrderById)
 
 // Payment Route
 router.route('/:id/pay').put(protect, updateOrderToPaid)
