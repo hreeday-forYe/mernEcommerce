@@ -24,7 +24,6 @@ const CartScreen = () => {
 
   // getting the userInfo from the state 
   const user = useSelector((state)=>state.auth)
-  console.log(user)
   const { userInfo } = user
 
   const addToCartHandler = async (product, qty)=>{
